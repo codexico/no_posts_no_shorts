@@ -1,0 +1,12 @@
+/* Remove Shorts e Posts no Desktop e Mobile */
+ytd-item-section-renderer:has([class*="shorts"]),
+[class*="shorts"],
+ytd-item-section-renderer:has([class*="post"]),
+[class*="post"],
+.ytGridShelfViewModelGridShelfRow,
+ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+ytd-reel-shelf-renderer,
+ytm-reel-shelf-renderer,
+ytd-rich-item-renderer:has(ytd-post-renderer) {
+  display: none !important;
+}
