@@ -83,3 +83,10 @@ https://firefox-source-docs.mozilla.org/devtools-user/about_colon_debugging/inde
 cd extension
 web-ext build -a ../web-ext-artifacts
 ```
+
+**Update on firefox store:**
+
+```sh
+cd extension
+web-ext sign --api-key <your-api-key> --api-secret <your-api-secret> --channel listed
+```
