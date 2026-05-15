@@ -8,6 +8,8 @@ const selectorsToRemove = [
   ".ytGridShelfViewModelGridShelfRow", // Shorts em formato de grade (variante)
   'ytd-item-section-renderer:has([class*="post"])', // Post Desktop (variante)
   '[class*="post"]', // Qualquer elemento com "post" no nome da classe (fallback)
+  'ytm-rich-section-renderer:has([class*="Post"])', // Qualquer elemento com "post" no nome da classe (fallback)
+  'ytm-rich-section-renderer:has([class*="post"])', // Qualquer elemento com "post" no nome da classe (fallback)
 ];
 
 // Função que busca e remove (ou oculta) os elementos
