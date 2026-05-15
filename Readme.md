@@ -2,6 +2,16 @@
 
 **Uma extensão leve e focada em performance para recuperar sua experiência no YouTube.**
 
+## Install
+
+**Firefox and Firefox for Android:**
+
+https://addons.mozilla.org/en-US/firefox/addon/no-posts-no-shorts-for-youtube/
+
+**Chrome:**
+
+https://chromewebstore.google.com/detail/no-posts-no-shorts-for-yo/gnlkanbjjhfpfbgbkhcfhnggknipokde
+
 ---
 
 ### 🚀 Status do Projeto
