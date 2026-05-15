@@ -67,6 +67,7 @@ Install web-ext https://extensionworkshop.com/documentation/develop/getting-star
 Then run one of this commands:
 
 ```sh
+cd extension
 web-ext run --target=firefox-android --android-device=emulator-5554 --firefox-apk=org.mozilla.fenix --adb-remove-old-artifacts
 web-ext run --target=firefox-android --android-device=emulator-5554 --firefox-apk=org.mozilla.firefox_beta --adb-remove-old-artifacts
 web-ext run --target=firefox-android --android-device=3C181JEKB07027 --firefox-apk=org.mozilla.firefox --adb-remove-old-artifacts
@@ -75,3 +76,10 @@ web-ext run --target=firefox-android --android-device=3C181JEKB07027 --firefox-a
 Use the firefox devtools from the computer to debug the extension:
 
 https://firefox-source-docs.mozilla.org/devtools-user/about_colon_debugging/index.html#connecting-to-a-remote-device
+
+**Build:**
+
+```sh
+cd extension
+web-ext build -a ../web-ext-artifacts
+```
