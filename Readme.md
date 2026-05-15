@@ -49,3 +49,29 @@ O **No Posts No Shorts for YouTube** também remove dinamicamente as prateleiras
 Esta extensão é de código aberto e **não coleta nenhum dado do usuário**
 
 Funciona inteiramente no lado do cliente, modificando apenas a apresentação visual (DOM/CSS) da página do YouTube para o próprio usuário.
+
+## Development
+
+https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/
+
+To test on android emulator:
+
+Download the _-x86_64.apk_ for the (latest?) android version of Firefox Nightly: https://ftp.mozilla.org/pub/fenix/releases/{150.0.3}/android/fenix-{150.0.3}-android-x86_64/
+
+Install by dragging the apk to the emulator (must first activate the developer permissions)
+
+To test on device, install the Firefox Nightly from the Play Store.
+
+Install web-ext https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/
+
+Then run one of this commands:
+
+```sh
+web-ext run --target=firefox-android --android-device=emulator-5554 --firefox-apk=org.mozilla.fenix --adb-remove-old-artifacts
+web-ext run --target=firefox-android --android-device=emulator-5554 --firefox-apk=org.mozilla.firefox_beta --adb-remove-old-artifacts
+web-ext run --target=firefox-android --android-device=3C181JEKB07027 --firefox-apk=org.mozilla.firefox --adb-remove-old-artifacts
+```
+
+Use the firefox devtools from the computer to debug the extension:
+
+https://firefox-source-docs.mozilla.org/devtools-user/about_colon_debugging/index.html#connecting-to-a-remote-device
