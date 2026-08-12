@@ -1,12 +1,14 @@
-/* Remove Shorts e Posts no Desktop e Mobile */
-ytd-item-section-renderer:has([class*="shorts"]),
-[class*="shorts"],
-ytd-item-section-renderer:has([class*="post"]),
+/* Remove Shorts e Posts também por css */
+
 [class*="post"],
-.ytGridShelfViewModelGridShelfRow,
-ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
-ytd-reel-shelf-renderer,
-ytm-reel-shelf-renderer,
-ytd-rich-item-renderer:has(ytd-post-renderer) {
+[class*="Post"],
+ytm-backstage-post-thread-renderer,
+ytm-backstage-post-renderer,
+ytd-post-renderer,
+[class*="shorts"],
+[class*="Shorts"],
+ytm-shorts-lockup-view-model,
+ytm-shorts-lockup-view-model-v2,
+[override-arrow-position-for-shorts] {
   display: none !important;
 }
