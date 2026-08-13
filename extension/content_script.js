@@ -11,21 +11,28 @@ const selectorsToRemove = [
   '[class*="Shorts"]',
   "ytm-shorts-lockup-view-model",
   "ytm-shorts-lockup-view-model-v2",
-  "[override-arrow-position-for-shorts]",
+  // DO NOT REMOVE THIS
+  // removing this blocks yt from loading more content on mobile
+  // "[override-arrow-position-for-shorts]",
 ];
 
-// easter egg: deixar o header
-// yt-post-header
+// easter egg: header
+// the Shorts header is not removed from the page
+// pq não consegui mesmo remover o header do Shorts
 
 // tem um caso em que o body tem um atributo "is-shorts"
 // então vamos ignorar o body
 // e aproveitar para já ignorar outras coisas também
-const bodySelector =
-  "body :not(script):not(style):not(link):not(meta):not(noscript):not(title):not(svg)";
+// const bodySelector =
+//  "body :not(script):not(style):not(link):not(meta):not(noscript):not(title):not(svg)";
+// agora vamos direto no conteudo
+// #app for mobile and #content for desktop
+const targetNode =
+  document.getElementById("app") || document.getElementById("content");
 
 function findElementsByTagName() {
   // Busca todos os elementos com a tag especificada
-  return Array.from(document.querySelectorAll(bodySelector)).filter((el) => {
+  return Array.from(targetNode).filter((el) => {
     const tagName = el.tagName.toLocaleLowerCase();
     return tagName.includes("post") || tagName.includes("shorts");
   });
@@ -43,7 +50,7 @@ function removeElementsByTagName() {
 
 function findElementsByAttrName() {
   // Busca todos os elementos com atributos contendo shorts ou post
-  return Array.from(document.querySelectorAll(bodySelector)).filter((el) => {
+  return Array.from(targetNode).filter((el) => {
     const attrNameList = Array.from(el.attributes).map((attr) =>
       attr.name.toLocaleLowerCase(),
     );
@@ -80,7 +87,6 @@ function removeElementsBySelector() {
   });
 }
 
-// Função que busca e remove (ou oculta) os elementos
 function cleanYouTubeHome() {
   // Executa apenas se não estiver na página de vídeo para evitar interferir com o player
   if (window.location.pathname === "/watch") return;
@@ -90,55 +96,70 @@ function cleanYouTubeHome() {
   removeElementsByTagName();
 }
 
-function debounce(func, wait) {
+function debounce() {
   let timeout;
-  return function executedFunction(...args) {
+  return function executedFunction() {
     const later = () => {
       clearTimeout(timeout);
-      func(...args);
+      cleanYouTubeHome();
     };
     clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
+    timeout = setTimeout(later, 2222);
   };
 }
 
-// O MutationObserver monitora mudanças no DOM
-const observer = new MutationObserver((mutations) => {
-  let shouldClean = false;
+let should = false;
 
+function shouldClean(mutations) {
+  should = false;
   // Executa apenas se não estiver na página de vídeo para evitar interferir com o player
-  if (window.location.pathname !== "/watch") {
-    for (const mutation of mutations) {
-      if (mutation.addedNodes.length > 0) {
-        shouldClean = true;
-        break;
-      }
-    }
+  // e se existirem mutations
+  if (window.location.pathname !== "/watch" && mutations.length > 0) {
+    should = true;
   }
+}
 
-  if (shouldClean) {
+const config = {
+  attributes: true, // Watch for attribute changes (e.g., class, style)
+  childList: true, // Watch for adding/removing child elements
+  subtree: true, // Extend watching to all descendant nodes
+};
+
+// 3. Create the callback function to execute when changes happen
+const callback = (mutationList, observer) => {
+  if (shouldClean(mutationList)) {
     // Um pequeno debounce rudimentar para não travar a thread principal
     // durante injeções massivas do YouTube
-    debounce(cleanYouTubeHome, 200)();
+    debounce()();
   }
-});
+};
 
-// Inicia a observação no documento inteiro
-observer.observe(document.documentElement, {
-  childList: true,
-  subtree: true,
-});
+// O MutationObserver monitora mudanças no DOM
+// 4. Create and start the observer instance
+const observer = new MutationObserver(callback);
+observer.observe(targetNode, config);
 
-// Limpeza inicial caso os elementos já estejam lá
-cleanYouTubeHome();
+// 0 - Limpeza inicial caso os elementos já estejam lá
+const timeout0 = setTimeout(() => {
+  debounce()();
+  clearTimeout(timeout0);
+}, 111);
 
-// algumas vezes o Post demora um pouco,
+// 1 - algumas vezes o Post demora um pouco,
 // sem trigger de mutation, então vamos tentar novamente
-setTimeout(() => {
-  cleanYouTubeHome();
-}, 888);
+const timeout1 = setTimeout(() => {
+  debounce()();
+  clearTimeout(timeout1);
+}, 7777);
 
-// mais uma vez
-setTimeout(() => {
-  cleanYouTubeHome();
-}, 2222);
+// 2 - pra garantir, rodar de vez em quando
+// pois o carregamento pode demorar no mobile
+// function interval(time) {
+//   const timetouInterval = setTimeout(() => {
+//     debounce()();
+
+//     clearTimeout(timetouInterval);
+//     interval(time);
+//   }, time);
+// }
+// interval(7777);
