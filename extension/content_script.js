@@ -5,6 +5,7 @@ const selectorsToRemove = [
   '[class*="Post"]',
   "ytm-backstage-post-thread-renderer",
   "ytm-backstage-post-renderer",
+  "ytm-post-multi-image-renderer",
   "ytd-post-renderer",
   '[class*="shorts"]',
   '[class*="Shorts"]',
@@ -12,6 +13,9 @@ const selectorsToRemove = [
   "ytm-shorts-lockup-view-model-v2",
   "[override-arrow-position-for-shorts]",
 ];
+
+// easter egg: deixar o header
+// yt-post-header
 
 // tem um caso em que o body tem um atributo "is-shorts"
 // então vamos ignorar o body
@@ -127,3 +131,14 @@ observer.observe(document.documentElement, {
 
 // Limpeza inicial caso os elementos já estejam lá
 cleanYouTubeHome();
+
+// algumas vezes o Post demora um pouco,
+// sem trigger de mutation, então vamos tentar novamente
+setTimeout(() => {
+  cleanYouTubeHome();
+}, 888);
+
+// mais uma vez
+setTimeout(() => {
+  cleanYouTubeHome();
+}, 2222);
