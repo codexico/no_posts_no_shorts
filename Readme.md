@@ -60,6 +60,12 @@ Esta extensão é de código aberto e **não coleta nenhum dado do usuário**
 
 Funciona inteiramente no lado do cliente, modificando apenas a apresentação visual (DOM/CSS) da página do YouTube para o próprio usuário.
 
+## Privacy Notes
+
+This extension is open-source and does not collect any user data.
+
+It operates entirely on the client side, modifying only the visual presentation (DOM/CSS) of the YouTube page for the user.
+
 ## Development
 
 https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/
