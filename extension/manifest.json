@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "No Posts No Shorts For YouTube",
   "description": "Remove Posts and Shorts from YouTube",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "homepage_url": "https://github.com/codexico/no_posts_no_shorts",
   "developer": {
     "name": "codexico",
