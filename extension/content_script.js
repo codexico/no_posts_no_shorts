@@ -27,8 +27,12 @@ const selectorsToRemove = [
 //  "body :not(script):not(style):not(link):not(meta):not(noscript):not(title):not(svg)";
 // agora vamos direto no conteudo
 // #app for mobile and #content for desktop
-const targetNode =
-  document.getElementById("app") || document.getElementById("content");
+// const targetNode =
+//   document.getElementById("app") || document.getElementById("content");
+// vamos voltar ao body, o yt começou a usar #content em diversos
+// lugares na mesma página
+const bodySelector =
+  "body :not(script):not(style):not(link):not(meta):not(noscript):not(title):not(svg)";
 
 function findElementsByTagName() {
   // Busca todos os elementos com a tag especificada
