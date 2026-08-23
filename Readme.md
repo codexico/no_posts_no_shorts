@@ -66,11 +66,27 @@ This extension is open-source and does not collect any user data.
 
 It operates entirely on the client side, modifying only the visual presentation (DOM/CSS) of the YouTube page for the user.
 
-## Development
+## Development & Testing
 
 https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/
 
-To test on android emulator:
+### Running Tests
+
+O projeto conta com uma suíte de testes unitários automatizada sem dependências pesadas, utilizando o test runner nativo do Node.js:
+
+```sh
+npm test
+```
+
+### Automation & Release
+
+Para gerar novas versões, validar testes, executar o linter e criar tags/releases no GitHub automaticamente:
+
+```sh
+npm run release [patch|minor|major|X.Y.Z]
+```
+
+### Testing on Android Emulator / Device
 
 Download the _-x86_64.apk_ for the (latest?) android version of Firefox Nightly: https://ftp.mozilla.org/pub/fenix/releases/{150.0.3}/android/fenix-{150.0.3}-android-x86_64/
 
@@ -106,3 +122,4 @@ web-ext build -a ../web-ext-artifacts
 cd extension
 web-ext sign --api-key <your-api-key> --api-secret <your-api-secret> --channel listed
 ```
+
