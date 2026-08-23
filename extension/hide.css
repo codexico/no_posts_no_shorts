@@ -1,14 +1,42 @@
-/* Remove Shorts e Posts também por css */
+/* ============================================================================
+   Ocultação Visual de Shorts e Posts via CSS (Desktop e Mobile m.youtube.com)
+   ============================================================================ */
 
+/*
+   AVISO IMPORTANTE:
+   NÃO adicione "[override-arrow-position-for-shorts]" a este arquivo CSS.
+   Ocultar esse atributo bloqueia o carregamento de novos conteúdos (infinite scroll)
+   no YouTube Mobile.
+*/
+
+/* 1. Posts da Comunidade */
 [class*="post"],
 [class*="Post"],
 ytm-backstage-post-thread-renderer,
 ytm-backstage-post-renderer,
+ytm-post-multi-image-renderer,
 ytd-post-renderer,
+
+/* 2. Seções e Prateleiras de Shorts (Desktop e Mobile m.youtube.com) */
 [class*="shorts"],
 [class*="Shorts"],
+ytm-reel-shelf-renderer,
+ytd-reel-shelf-renderer,
+ytd-rich-shelf-renderer[is-shorts],
+
+/* 3. Cards e Elementos Indivíduais de Shorts */
 ytm-shorts-lockup-view-model,
 ytm-shorts-lockup-view-model-v2,
-[override-arrow-position-for-shorts] {
+ytm-reel-item-renderer,
+ytd-reel-item-renderer,
+
+/* 4. Seletores Relacionais (:has) para capturar contêineres e botões de Shorts */
+ytd-rich-item-renderer:has(a[href*="/shorts/"]),
+ytm-rich-item-renderer:has(a[href*="/shorts/"]),
+ytm-pivot-bar-item-renderer:has(a[href*="/shorts/"]),
+ytm-pivot-bar-item-renderer:has(.pivot-shorts),
+ytm-compact-video-renderer:has(a[href*="/shorts/"]) {
   display: none !important;
 }
+
+
