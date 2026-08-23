@@ -1,2 +1,5 @@
 web-ext-artifacts
 .env
+ia/
+node_modules/
+
