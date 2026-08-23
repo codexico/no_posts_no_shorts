@@ -1,6 +1,6 @@
 {
   "name": "no_posts_no_shorts",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "**Uma extensão leve e focada em performance para recuperar sua experiência no YouTube.**",
   "main": "index.js",
   "scripts": {
